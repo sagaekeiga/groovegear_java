@@ -68,6 +68,7 @@
         %><br><br>
         <%
             out.print("‐‐①‐‐");//課題6
+            //クエリストリング→?param1=1&param2=2&param3=3
         %><br>
         <%
             String product1 = request.getParameter("param1"); 
