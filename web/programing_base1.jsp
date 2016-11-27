@@ -84,6 +84,48 @@
             if ("3".equals(product3)){
                 out.print("3:その他");
             }
+        %><br><br>
+　　　　<%
+            out.print("‐‐②‐‐");//課題6
+        %><br><br>
+        <%
+            out.println("総額:1500円");
+        %><br><br>
+        <%
+            out.println("雑貨:10個");
+        %><br><br>
+        <%
+            out.println("生鮮食品:1個");
+        %><br><br>
+        <%
+            out.println("その他:4個");
+        %><br><br>
+        <%
+            out.println("一個当たりの値段");
+        %><br><br>
+        <%
+            out.println("雑貨:50円");
+        %><br><br>
+        <%
+            out.println("生鮮食品:700円");
+        %><br><br>
+        <%
+            out.println("その他:75円");
+        %><br><br>
+        <%
+            out.print("‐‐②‐‐");
+        %><br><br>        
+        <%
+            out.print("CASE:3000円");
+        %><br><br>
+        <%
+            out.print("発生ポイント→"+3000*0.04+"ポイント");
+        %><br><br>
+        <%
+            out.print("CASE:5000円");
+        %><br><br>
+        <%
+            out.print("発生ポイント→"+5000*0.05+"ポイント");
         %>
     </body>
 </html>
