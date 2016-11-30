@@ -71,13 +71,10 @@
         <h2>while</h2><br>
         <%
             int y = 1000;
-            while(true){
-                y = y/2;
-                if(y<100){
-                    break;
-                }
+            while (y >100) {
+                y /= 2;
+                out.print(y + "  ,");
         } 
-        out.print(y);
         %>
         <h2>配列の作成</h2><br>
         <%
