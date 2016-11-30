@@ -64,69 +64,62 @@
         %><br><br>
         
         <%
-            out.print("課題6");//課題6
+            out.print("課題6　★クエリストリング★");//課題6
         %><br><br>
         <%
-            out.print("‐‐①‐‐");//課題6
             //クエリストリング→?param1=1&param2=2&param3=3
-        %><br>
+        %><br><br><br>
         <%
             String product1 = request.getParameter("param1"); 
             String product2 = request.getParameter("param2"); 
             String product3 = request.getParameter("param3");
             
-            out.print("商品種別  →  ");
-            if ("1".equals(product1)){
-                out.println("1:雑貨  ");
+            int a = Integer.parseInt(product1);
+            int b = Integer.parseInt(product2);
+            int c = Integer.parseInt(product3);
+            
+            out.print("あなたが選んだ商品は ");
+            if (a == 1){
+                out.println("雑貨ですね。---------①(商品種別)");
             }
-            if ("2".equals(product2)){
-                out.print("2:生鮮食品  ");
+            if (a == 2){
+                out.print("生鮮食品ですね---------①(商品種別)");
             }
-            if ("3".equals(product3)){
-                out.print("3:その他");
+            if (a == 3){
+                out.print("その他ですね---------①(商品種別)");
             }
         %><br><br>
-　　　　<%
-            out.print("‐‐②‐‐");//課題6
+        <%
+            out.print(b + "点のお買い上げですので、代金は" + c + "円になります。");//課題6
         %><br><br>
         <%
-            out.println("総額:1500円");
+            out.println("本商品は、一個あたり" + c/b +"円となっております -----------②(一個あたりの値段)");
         %><br><br>
         <%
-            out.println("雑貨:10個");
+            if (c>3000 & c<5000) {
+            out.println("ただいまキャンペーン中でして、3000円以上の商品をご購入いただいたお客様には4%の値引きをさせていただいております。-------------③(購入額に応じたポイントの表示)");
+            }
         %><br><br>
         <%
-            out.println("生鮮食品:1個");
-        %><br><br>
-        <%
-            out.println("その他:4個");
-        %><br><br>
-        <%
-            out.println("一個当たりの値段");
-        %><br><br>
-        <%
-            out.println("雑貨:50円");
-        %><br><br>
-        <%
-            out.println("生鮮食品:700円");
-        %><br><br>
-        <%
-            out.println("その他:75円");
-        %><br><br>
-        <%
-            out.print("‐‐②‐‐");
-        %><br><br>        
-        <%
-            out.print("CASE:3000円");
-        %><br><br>
-        <%
-            out.print("発生ポイント→"+3000*0.04+"ポイント");
-        %><br><br>
-        <%
-            out.print("CASE:5000円");
-        %><br><br>
-        <%
-            out.print("発生ポイント→"+5000*0.05+"ポイント");
+            if (c>3000 & c<5000) {
+            double d = c;
+            double e = d*0.96;
+            int i = (int) e;
+            out.println("よって、代金は" + i + "円となります。");
+            }
         %>
+        <%
+            if (c>5000) {
+            out.println("ただいまキャンペーン中でして、5000円以上の商品をご購入いただいたお客様には5%の値引きをさせていただいております。-------------③(購入額に応じたポイントの表示)");
+            }
+        %><br><br>
+        <%
+            if (c>5000) {
+            double d = c;
+            double e = d*0.95;
+            int i = (int) e;
+            out.println("よって、代金は" +i + "円となります。");
+            }
+        %><br><br>
     </body>
 </html>
