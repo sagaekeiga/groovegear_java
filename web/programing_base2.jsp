@@ -106,6 +106,9 @@
             int f = Integer.parseInt(product1);
             out.print("元の値:"+f +"/  素因数分解の結果: ");
             for(int i=2;f>i;i++){
+                  if (i == 4 || i ==6 || i == 8 || i==9){
+                  continue;
+                  }
                 while((f%i) == 0){
                     out.print(i+" ");
                     f = f/i;
