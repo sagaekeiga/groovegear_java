@@ -50,7 +50,10 @@
                     
                 }
         }
-            int j = 50;
+        }
+        %>
+        <%
+            int j = 45;
             getNum(out, j);
         %>
         </body>
