@@ -13,14 +13,16 @@
         <title>JSP Page</title>
     </head>
     <body>
+        //ユーザー定義メソッドの作成//戻り値1
         <%!
-            void writeName(JspWriter out, String a, String b, String c){
+            boolean writeName(JspWriter out, String a, String b, String c){
             try{
             out.println(a); 
             out.println(b); 
             out.println(c); 
             } catch(IOException e) {
             }
+            return true;
         }
         %>
         <pre>
@@ -35,7 +37,7 @@
         </pre>
         
         
- 
+        //引数1
         <%!
             void getNum(JspWriter out,int num1){
             if((num1% 2 == 0) && (num1 != 0)){
@@ -55,6 +57,58 @@
         <%
             int j = 45;
             getNum(out, j);
+        %>
+        
+        //引数2
+        <%!
+            Integer sample(JspWriter out, Integer aaa, Integer bbb, boolean type) {
+            type = false;
+            bbb = 5;
+            Integer ccc = 0;
+            ccc = aaa * bbb;
+            if(type){
+                try{
+                out.println(ccc);
+                }catch(IOException e){
+                }
+            }else{
+                try{
+                out.println((int)Math.pow(ccc, 2));
+                }catch(IOException e){
+                    
+                }
+            }
+             return ccc;
+        }
+        %>
+        
+        <%
+            int y = 0;
+             Integer CCC = sample(out, 48, y, true);
+        %>
+        
+        //戻り値1
+        <%
+            String dddd = "";
+            String ffff = "";
+            String hhhh = "";
+               boolean FFF = writeName(out, dddd, ffff, hhhh);
+               if(FFF == false){
+                   out.println("正しく実行できませんでした");
+               }else{
+                   out.println("この処理は正しく実行できました");
+               }
+        %>
+        
+        //戻り値2
+        <%!
+            String getAdd(JspWriter out, Integer id, String k, String l, String p){
+            id = 1;
+            k = "寒河江";
+            l = "1993年5月28日";
+            p = "仙台";
+            return k & l & p;
+        }
         %>
         </body>
 </html>
