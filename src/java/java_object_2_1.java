@@ -23,35 +23,37 @@ public class java_object_2_1 {
         abstract public void checkSum();//checkSumというabstractな公開メソッドを用意
         ArrayList<Integer> myCards = new ArrayList<Integer>();
     }
-    abstract class Dealar extends Human {
-        ArrayList<Integer> cards = new ArrayList<Integer>();{//cardsというArrayListの変数を用意し、初期処理でこのcardsにすべてのトランプを持たせる。
-        for (int i = 1; i<14; i++ ){
+    abstract class Dealar extends Human 
+    {
+        ArrayList<Integer> cards = new ArrayList<Integer>();
+        {
+        for(int i = 1; i<14; i++){
         cards.add(i);
         cards.add(i);
         cards.add(i);
         cards.add(i);
         }
-    }
-        abstract public Integer deal();{
+        }
+        public ArrayList deal(){
         Random rand= new Random();
         Integer index = rand.nextInt(52);
         Integer index2 = rand.nextInt(52);
         cards.get(index);
         cards.get(index2);
-    }
-        abstract public Integer hit();{
+        return cards;
+    };
+        public ArrayList hit(){
         Random rand= new Random();
         Integer index = rand.nextInt(52);
         cards.get(index);
+        return cards;
     }
-        @Override
-        abstract public void setCard(String ArrayList);{
+        public void setCard(String ArrayList){
         ArrayList<Integer> myCards = new ArrayList<Integer>();{
             myCards = cards;
         }
     }
-        @Override
-        abstract public void checkSum();{
+        public void checkSum(){
         for(int i = 0; i<53+1;i++){//myCardsの確認
             Integer g = myCards.get(i);
             out.println(g+" ,");
@@ -63,35 +65,34 @@ public class java_object_2_1 {
         }
     }
         
-        @Override
-        abstract public int open();{//myCardsの合計値を返却
-        for(int i = 0; i<53+1;i++){
+        public int open(){//myCardsの合計値を返却
             int e = 0;
+        for(int i = 0; i<53+1;i++){
             e = myCards.get(i);
             e += e;
         }
+        return e;
     }
     }
     
   
  abstract class User extends Human {
      
-    ArrayList<Integer> cards = new ArrayList<Integer>();{//cardsというArrayListの変数を用意し、初期処理でこのcardsにすべてのトランプを持たせる。
+    ArrayList<Integer> cards = new ArrayList<>();
+    {//cardsというArrayListの変数を用意し、初期処理でこのcardsにすべてのトランプを持たせる。
         for (int i = 1; i<14; i++ ){
         cards.add(i);
         cards.add(i);
         cards.add(i);
         cards.add(i);
         }
- }
-       @Override
-        abstract public void setCard(String ArrayList);{
+    }
+        public void setCard(String ArrayList){
         ArrayList<Integer> myCards = new ArrayList<Integer>();{
             myCards = cards;
         }
     }
-        @Override
-        abstract public void checkSum();{
+        public void checkSum(){
         for(int i = 0; i<53+1;i++){//myCardsの確認
             Integer g = myCards.get(i);
             out.println(g+" ,");
@@ -103,13 +104,13 @@ public class java_object_2_1 {
         }
     }
         
-        @Override
-        abstract public int open();{//myCardsの合計値を返却
-        for(int i = 0; i<53+1;i++){
+        public int open(){//myCardsの合計値を返却
             int e = 0;
+        for(int i = 0; i<53+1;i++){
             e = myCards.get(i);
             e += e;
         }
+        return e;
     }
     }
 }
