@@ -56,9 +56,9 @@ public class data_operate_2 extends HttpServlet {
         out.print("名前:" + db_data.getString("name") + "<br>");
     }
     
-    String sql = "delete from user where userID = ?";
+    String sql = "update user set name='松岡修造', age=48, birthday='1967-11-06' where userID = ?";
     ps = db_con.prepareStatement(sql);
-    ps.setInt(1, 6);
+    ps.setInt(1, 1);
     int num = ps.executeUpdate();
     out.println("結果：" + num);
     
