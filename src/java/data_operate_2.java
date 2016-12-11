@@ -42,7 +42,6 @@ public class data_operate_2 extends HttpServlet {
     PreparedStatement ps = null;
     PreparedStatement dd = null;
     ResultSet db_data = null;
-    ResultSet ll = null;
 
     try
     {
@@ -57,36 +56,13 @@ public class data_operate_2 extends HttpServlet {
         out.print("名前:" + db_data.getString("name") + "<br>");
     }
     
-
+    String sql = "delete from user where userID = ?";
+    ps = db_con.prepareStatement(sql);
+    ps.setInt(1, 6);
+    int num = ps.executeUpdate();
+    out.println("結果：" + num);
     
-    Statement stmt = db_con.createStatement();
-    String table = "SELECT * FROM user ";
-    ResultSet rs = stmt.executeQuery(table);
-    while (rs.next()) {
-        out.print("ID:" + rs.getInt("userID") + "<br>");
-        out.print("名前:" + rs.getString("name") + "<br>");
-        out.print("電話番号:" + rs.getString("tell") + "<br>");
-        out.print("年齢:" + rs.getInt("age") + "<br>");
-        out.print("誕生日:" + rs.getString("birthday") + "<br>");
-        out.print("departmentID:" + rs.getInt("departmentID") + "<br>");
-        out.print("stationID:" + rs.getInt("stationID") + "<br>");
-    }
-    out.print("<br><br><br>");
-    dd =db_con.prepareStatement( "SELECT userID, name, tell, age, birthday, departmentID, stationID  FROM user WHERE userID=?");
-    dd.setInt(1,1);
-    ll = dd.executeQuery();
-    while (ll.next()) {
-        out.print("ID:" + ll.getInt("userID") + "<br>");
-        out.print("名前:" + ll.getString("name") + "<br>");
-        out.print("電話番号:" + ll.getString("tell") + "<br>");
-        out.print("年齢:" + ll.getInt("age") + "<br>");
-        out.print("誕生日:" + ll.getString("birthday") + "<br>");
-        out.print("departmentID:" + ll.getInt("departmentID") + "<br>");
-        out.print("stationID:" + ll.getInt("stationID") + "<br>");
-    }
-    
-    ll.close();
-    db_data.close();
+    ps.close();
     db_st.close();
     db_con.close();
     
