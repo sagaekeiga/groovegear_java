@@ -62,17 +62,13 @@
     {
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "sagaekeiga", "s19930528");
-    if ( name != null){
-     String sql = "INSERT INTO user(name, userID, stationID) VALUES(?, ?, ?)";
+
+    String sql = "delete from user where userID = ?";
      ps = db_con.prepareStatement(sql);
-     ps.setString(1,name);
-     ps.setInt(2, u);
-     ps.setInt(3, 1);
+     ps.setInt(1, u);
      int num = ps.executeUpdate();
      out.println("結果：" + num);
-    }else{
-        
-    }
+
      
         } catch(SQLException e_sql){
         out.println("接続時にエラーが発生しました：" + e_sql.toString());
