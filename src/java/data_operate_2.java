@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,7 @@ public class data_operate_2 extends HttpServlet {
        
     Connection db_con = null;
     PreparedStatement db_st = null;
+    PreparedStatement ps = null;
     ResultSet db_data = null;
     
     try
@@ -47,10 +49,19 @@ public class data_operate_2 extends HttpServlet {
     db_st = db_con.prepareStatement("select * from user where age = ? ");
     db_st.setInt(1,24);
     
+    
     db_data = db_st.executeQuery();
     while (db_data.next()) {
         out.print("名前:" + db_data.getString("name") + "<br>");
     }
+    
+    String sql = "INSERT INTO user(userID,name, stationID) VALUES(?, ?, ?)";
+    ps = db_con.prepareStatement(sql);
+    ps.setInt(1,6);
+    ps.setString(2,"寒河江");
+    ps.setInt(3,2);
+    int num = ps.executeUpdate();
+    out.println("結果：" + num);
     
     db_data.close();
     db_st.close();
