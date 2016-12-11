@@ -9,8 +9,12 @@
         <servlet-class>org.camp.servlet.FortuneTelling</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>java_object_2</servlet-name>
-        <servlet-class>java_object_2</servlet-class>
+        <servlet-name>db_operate</servlet-name>
+        <servlet-class>db_operate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>data_operate_2</servlet-name>
+        <servlet-class>data_operate_2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
@@ -21,8 +25,12 @@
         <url-pattern>/FortuneTelling</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>java_object_2</servlet-name>
-        <url-pattern>/java_object_2</url-pattern>
+        <servlet-name>db_operate</servlet-name>
+        <url-pattern>/db_operate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>data_operate_2</servlet-name>
+        <url-pattern>/data_operate_2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
