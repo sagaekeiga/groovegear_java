@@ -18,27 +18,24 @@
     </head>
     <body>
         
+
         <form action="./data_operate_3.jsp" method = "post">
-            <input type="number" name="txtSearch"><br><br>
-            <input type="submit" value="検索">
-        </form>
-        <%
-            request.setCharacterEncoding("UTF-8");
-            String search = request.getParameter("txtSearch");
-            out.println(search + "<br>");
-        %><br><br>
-        <form action="./data_operate_3.jsp" method = "post">
-            名前<input type="text" name="txtIn">
-            userID<input type="number" name="numSearch">
+            userID<input type="number" name="numSearch"><br><br>
+            名前<input type="text" name="txtIn"><br><br>
+            tell<input type="text" name="tell"><br><br>
+            age<input type="text" name="age"><br><br>
+            birthday<input type="date" name="birthday"><br><br>
+            departmentID<input type="number" name="department"><br><br>
+            stationID<input type="number" name="station"><br><br>
             <input type="submit" value="挿入"><br><br>
         </form>
-        <%
+        <%//名前
             request.setCharacterEncoding("UTF-8");
             String name = request.getParameter("txtIn");
             out.println(name + "<br>");
         %><br><br>
 
-        <%
+        <%//userID
             request.setCharacterEncoding("UTF-8");
             String user_id = request.getParameter("numSearch");
             int u = 0;
@@ -49,7 +46,43 @@
                 
             }
         %><br><br>
-
+        <%//tell
+            request.setCharacterEncoding("UTF-8");
+            String tell = request.getParameter("tell");
+            out.println(tell + "<br>");
+        %><br><br>
+        <%//age
+            request.setCharacterEncoding("UTF-8");
+            String age = request.getParameter("age");
+            out.println(age + "<br>");
+        %><br><br>
+        <%//birthday
+            request.setCharacterEncoding("UTF-8");
+            String birthday = request.getParameter("birthday");
+            out.println(birthday + "<br>");
+        %><br><br>
+        <%//departmentID
+            request.setCharacterEncoding("UTF-8");
+            String department = request.getParameter("department");
+            int d = 0;
+            if (department != null){
+            d = Integer.parseInt(department);
+            out.println(d + "<br>");
+            }else{
+                
+            }
+        %><br><br>
+        <%//stationID
+            request.setCharacterEncoding("UTF-8");
+            String station = request.getParameter("station");
+            int s = 0;
+            if (station != null){
+            s = Integer.parseInt(station);
+            out.println(s + "<br>");
+            }else{
+                
+            }
+        %><br><br>
 <%
     Connection db_con = null;
     PreparedStatement db_st = null;
@@ -63,9 +96,15 @@
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "sagaekeiga", "s19930528");
 
-    String sql = "delete from user where userID = ?";
+    String sql = "update user set name=?, tell=?, age=?, birthday=?, departmentID=?, stationID=? where userID = ?";
      ps = db_con.prepareStatement(sql);
-     ps.setInt(1, u);
+     ps.setString(1, name);
+     ps.setString(2, tell);
+     ps.setString(3, age);
+     ps.setString(4, birthday);
+     ps.setInt(5, d);
+     ps.setInt(6, s);
+     ps.setInt(7, u);
      int num = ps.executeUpdate();
      out.println("結果：" + num);
 
