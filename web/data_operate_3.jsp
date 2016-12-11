@@ -19,14 +19,37 @@
     <body>
         
         <form action="./data_operate_3.jsp" method = "post">
-            <input type="text" name="txtSearch"><br><br>
+            <input type="number" name="txtSearch"><br><br>
             <input type="submit" value="検索">
         </form>
         <%
             request.setCharacterEncoding("UTF-8");
             String search = request.getParameter("txtSearch");
             out.println(search + "<br>");
-        %>
+        %><br><br>
+        <form action="./data_operate_3.jsp" method = "post">
+            名前<input type="text" name="txtIn">
+            userID<input type="number" name="numSearch">
+            <input type="submit" value="挿入"><br><br>
+        </form>
+        <%
+            request.setCharacterEncoding("UTF-8");
+            String name = request.getParameter("txtIn");
+            out.println(name + "<br>");
+        %><br><br>
+
+        <%
+            request.setCharacterEncoding("UTF-8");
+            String user_id = request.getParameter("numSearch");
+            int u = 0;
+            if (user_id != null){
+            u = Integer.parseInt(user_id);
+            out.println(u + "<br>");
+            }else{
+                
+            }
+        %><br><br>
+
 <%
     Connection db_con = null;
     PreparedStatement db_st = null;
@@ -39,14 +62,18 @@
     {
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "sagaekeiga", "s19930528");
-    db_st = db_con.prepareStatement("select * from user where name like '%' ? '%' ");
-    db_st.setString(1,search);
-    
-    
-    db_data = db_st.executeQuery();
-    while (db_data.next()) {
-        out.print("名前:" + db_data.getString("name") + "<br>");
+    if ( name != null){
+     String sql = "INSERT INTO user(name, userID, stationID) VALUES(?, ?, ?)";
+     ps = db_con.prepareStatement(sql);
+     ps.setString(1,name);
+     ps.setInt(2, u);
+     ps.setInt(3, 1);
+     int num = ps.executeUpdate();
+     out.println("結果：" + num);
+    }else{
+        
     }
+     
         } catch(SQLException e_sql){
         out.println("接続時にエラーが発生しました：" + e_sql.toString());
     } catch (Exception e) {
