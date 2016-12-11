@@ -20,14 +20,10 @@
         
 
         <form action="./data_operate_3.jsp" method = "post">
-            userID<input type="number" name="numSearch"><br><br>
             名前<input type="text" name="txtIn"><br><br>
-            tell<input type="text" name="tell"><br><br>
             age<input type="text" name="age"><br><br>
             birthday<input type="date" name="birthday"><br><br>
-            departmentID<input type="number" name="department"><br><br>
-            stationID<input type="number" name="station"><br><br>
-            <input type="submit" value="挿入"><br><br>
+            <input type="submit" value="検索"><br><br>
         </form>
         <%//名前
             request.setCharacterEncoding("UTF-8");
@@ -96,19 +92,21 @@
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     db_con = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "sagaekeiga", "s19930528");
 
-    String sql = "update user set name=?, tell=?, age=?, birthday=?, departmentID=?, stationID=? where userID = ?";
-     ps = db_con.prepareStatement(sql);
-     ps.setString(1, name);
-     ps.setString(2, tell);
-     ps.setString(3, age);
-     ps.setString(4, birthday);
-     ps.setInt(5, d);
-     ps.setInt(6, s);
-     ps.setInt(7, u);
-     int num = ps.executeUpdate();
-     out.println("結果：" + num);
+    db_st = db_con.prepareStatement("select*from user where name like '%' ? '%'  && age like '%' ? '%' && birthday like '%' ? '%' ");
+     db_st.setString(1, name);
+     db_st.setString(2, age);
+     db_st.setString(3, birthday);
 
-     
+     db_data = db_st.executeQuery();
+     while (db_data.next()) {
+         out.print("userID:" + db_data.getInt("userID") + "<br>");
+         out.print("名前:" + db_data.getString("name") + "<br>");
+         out.print("電話番号:" + db_data.getString("tell") + "<br>");
+         out.print("年齢:" + db_data.getString("age") + "<br>");
+         out.print("誕生日:" + db_data.getString("birthday") + "<br>");
+         out.print("departmentID:" + db_data.getInt("departmentID") + "<br>");
+         out.print("stationID:" + db_data.getInt("stationID") + "<br>");
+     }    
         } catch(SQLException e_sql){
         out.println("接続時にエラーが発生しました：" + e_sql.toString());
     } catch (Exception e) {
