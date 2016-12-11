@@ -43,6 +43,7 @@ public class data_operate_2 extends HttpServlet {
     PreparedStatement dd = null;
     ResultSet db_data = null;
 
+    
     try
     {
     Class.forName("com.mysql.jdbc.Driver").newInstance();
